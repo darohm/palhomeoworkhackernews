@@ -1,4 +1,4 @@
-package io.pivotal.pal.tracker;
+package io.pivotal.pal.hackernews;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

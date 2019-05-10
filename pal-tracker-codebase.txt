@@ -1,1 +1,1 @@
-pal-tracker codebase
+pal-hackernews codebase
