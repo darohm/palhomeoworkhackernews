@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class WelcomeController {
     RestTemplate restTemplate;
 
@@ -24,7 +24,8 @@ public class WelcomeController {
         Story story = getTopStory();
 //        HttpEntity<Story> topStory = new HttpEntity<Story>(story);
 //        return "<html><body><h1>Title: " + story.getTitle() + "<h1></body></html>";
-        return "index";
+        String storyTitleAndLink = "<h1><a href=" + story.getUrl() + ">Title: " + story.getTitle() + "</a></h1>";
+        return storyTitleAndLink;
     }
 
     public Story getTopStory(){
@@ -34,7 +35,7 @@ public class WelcomeController {
                 null,
                 new ParameterizedTypeReference<List<Integer>>() {});
         List<Integer> topStories = response.getBody();
-        int topStory = topStories.indexOf(0);
+        Integer topStory = topStories.get(0);
         String topStoryInfoRequestUrl = "https://hacker-news.firebaseio.com/v0/item/" + String.valueOf(topStory) + ".json";
         Story storyInfo = restTemplate.getForObject(
                 topStoryInfoRequestUrl,
